@@ -10,7 +10,7 @@ package searchbird;
 service Searchbird {
   rpc Get (GetRequest) returns (GetResponse);
   rpc Put (PutRequest) returns (PutResponse);
-  rpc Search (SearchRequest) returns (SearchResponse);
+  rpc Search (SearchRequest) returns (stream SearchResponseBatch);
 }
 
 /*
@@ -44,6 +44,6 @@ message PutResponse {
   string prev = 2; // returns previous value if key existed, else ''.
 }
 
-message SearchResponse {
+message SearchResponseBatch {
   repeated string key = 1; // [] if no results.
 }
