@@ -1,6 +1,6 @@
 # Searchbird for GRPC
 
-Twitter Scala School provides an great introduction to *Scala+Finagle*s with a sample sharded client-server search index, amicably called _Searchbird_
+Twitter Scala School provides an great introduction to *Scala+Finagle*s with a sample sharded client-server search index, amicably called _Searchbird_. Think memcached.
 
 twitter.github.io/scala_school/searchbird.html
 
@@ -9,8 +9,14 @@ to gRPC and Java.
 
 The project also showcases Java 8's *streams* API idioms for porting the Scala code.
 
-## TODO
+## Run Server
 
-* finish server (main thread) that is configured as distinguished node or shard i node.
-* experiment with futures outside of buffered search results
-* tests.
+`gradle run`
+
+## Connect as a sample Client
+
+_todo_
+
+## Tests
+
+_todo_
