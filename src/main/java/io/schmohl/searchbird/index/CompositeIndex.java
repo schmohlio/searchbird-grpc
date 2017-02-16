@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 /*
  * Composite Index is an index the routes requests to multiple remote indices;
  */
-class CompositeIndex extends Index {
+public class CompositeIndex implements Index {
     private Collection<Index> indices;
 
     public CompositeIndex(Collection<Index> indices) {
@@ -34,7 +34,7 @@ class CompositeIndex extends Index {
                         (acc, n) -> {
                             if (!acc.contains(n)) acc.add(n);
                         },
-                        (s1, s2) -> s1.addAll(s2));
+                        HashSet::addAll);
 
         return results.stream().collect(Collectors.toList());
     }

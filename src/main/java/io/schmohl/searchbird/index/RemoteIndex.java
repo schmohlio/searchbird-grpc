@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import io.schmohl.searchbird.*;
 
 
-class RemoteIndex extends Index {
+public class RemoteIndex implements Index {
     private static final Logger logger = Logger.getLogger(RemoteIndex.class.getName());
 
     private String host;

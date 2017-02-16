@@ -8,10 +8,11 @@ import io.schmohl.searchbird.index.Index;
 import java.util.List;
 import java.util.Optional;
 
+// Searchbird Implementation with pluggable Index!
 public class SearchbirdImpl extends SearchbirdGrpc.SearchbirdImplBase {
     private Index index;
 
-    public static final int SEARCH_RESPONSE_BATCH_SIZE = 5;
+    public static final int SEARCH_RESPONSE_BATCH_SIZE = 10;
 
     public SearchbirdImpl(Index i) { index = i; }
 
@@ -47,6 +48,9 @@ public class SearchbirdImpl extends SearchbirdGrpc.SearchbirdImplBase {
 
     @Override
     public void search(SearchRequest request, StreamObserver<SearchResponseBatch> responseObserver) {
+
+        // in a different implementation of querying with pages, this might be an iterator
+        // that limits memory to batch size.
         List<List<String>> chunks = Lists.partition(index.search(request.getQuery()), SEARCH_RESPONSE_BATCH_SIZE);
 
         // we buffer them out to the client as an example of not trying ot send all search results.

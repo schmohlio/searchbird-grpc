@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-class ResidentIndex extends Index {
+public class ResidentIndex implements Index {
     private static final Logger logger = Logger.getLogger(ResidentIndex.class.getName());
 
     private static final String tokenizer = Pattern.quote(" ");
@@ -47,7 +47,9 @@ class ResidentIndex extends Index {
 
         // "mutable reduction"
         Set<String> intersected = hits
-                .collect(HashSet::new, (acc, n) -> { if (!acc.contains(n)) acc.add(n); }, (s1, s2) -> s1.addAll(s2));
+                .collect(HashSet::new,
+                        (acc, n) -> { if (!acc.contains(n)) acc.add(n); },
+                        HashSet::addAll);
 
         return intersected.stream().collect(Collectors.toList());
     }
